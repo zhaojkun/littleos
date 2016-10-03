@@ -1,10 +1,14 @@
-#include"framebuffer.h"
+#include"basic.h"
+#include"io.h"
+#include"interrupt.h"
+#include"keyboard.h"
 int strLen(const char * buf);
 
 void kmain(){
   clean_screen();
-  const char *str="Hi,I'am Zhao Jiangkun,I'm from Shanghai China.";
-  write(str,strLen(str));
+  idt_init();
+  kb_init();
+  while(1);
   return ;
 }
 int strLen(const char *buf){
