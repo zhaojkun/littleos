@@ -1,5 +1,6 @@
-#include"framebuffer.h"
+#include"basic.h"
 #include"io.h"
+#include"const.h"
 void clean_screen(){
   char *fb=(char *)0xb8000;
   unsigned int i=0;
@@ -11,9 +12,8 @@ void clean_screen(){
   return;
 }
 void fb_write_cell(unsigned int i,char c,unsigned char fg,unsigned char bg){
-  char *fb=(char *)0x000b8000;
-  fb[i]=c;
-  fb[i+1]=((fg&0x0f)<<4|(bg &0x0f));
+  vidptr[i]=c;
+  vidptr[i+1]=((fg&0x0f)<<4|(bg &0x0f));
 }
 void fb_move_cursor(unsigned short pos){
   outb(FB_COMMAND_PORT,FB_HIGH_BYTE_COMMAND);
